@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands, tasks
 import aiohttp
 import asyncio
-
+import os
 TOKEN = 'YOUR_DISCORD_BOT_TOKEN'
 GUILD_ID = os.environ['Token']
 ROLE_ID = os.environ['R']
