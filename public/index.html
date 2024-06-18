@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOUR CODE IS READY</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .banner {
+            width: 100%;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        #key {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://share.creavite.co/6671d766885d8bdb9f5efcc5.gif" class="banner" alt="Top Banner">
+    <h1>YOUR CODE IS READY</h1>
+    <div class="container">
+        <div id="key"></div>
+        <button onclick="copyKey()">COPY GENERATED CODE</button>
+    </div>
+    <img src="https://share.creavite.co/6671d809885d8bdb9f5efcc9.gif" class="banner" alt="Bottom Banner">
+
+    <script>
+        async function fetchKey() {
+            try {
+                let response = await fetch('/generate_key');
+                let data = await response.json();
+                document.getElementById('key').textContent = `!verify ${data.key}`;
+            } catch (error) {
+                console.error('Error fetching key:', error);
+            }
+        }
+
+        function copyKey() {
+            let keyText = document.getElementById('key').textContent;
+            navigator.clipboard.writeText(keyText).then(() => {
+                alert('Copied to clipboard: ' + keyText);
+            }, (err) => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Fetch a key when the page loads
+        window.onload = fetchKey;
+    </script>
+</body>
+</html>
