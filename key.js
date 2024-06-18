@@ -17,7 +17,7 @@ function generateKey() {
     return key;
 }
 
-app.get('/', (req, res) => {
+app.get('/generate_key', (req, res) => {
     let key = generateKey();
     claimedKeys.add(key);
     res.json({ key: key });
